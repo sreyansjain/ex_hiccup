@@ -59,7 +59,7 @@ defmodule ExHiccup do
   end
 
   # --- Main render logic ---
-
+  defp render_node({:raw, html}) when is_binary(html), do: html
   # {:tag}
   defp render_node({tag}) when is_atom(tag) or is_binary(tag) do
     render_node({tag, %{}, []})
@@ -96,7 +96,6 @@ defmodule ExHiccup do
   end
 
   defp render_node(list) when is_list(list), do: Enum.map(list, &render_node/1)
-  defp render_node({:raw, html}) when is_binary(html), do: html
   defp render_node(text) when is_binary(text), do: html_escape(text)
   defp render_node(nil), do: []
 
