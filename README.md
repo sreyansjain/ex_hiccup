@@ -18,6 +18,24 @@ ExHiccup.render_to_string({"div#main.card", %{data_role: "x"}, ["Hello!"]})
 
 ExHiccup.render({"input#foo.big", %{type: "text"}})
 # => ["<input id=\"foo\" class=\"big\" type=\"text\" />"]
+#
+#Empty div
+ExHiccup.render({:div})
+
+#h1
+ExHiccup.render({:h1, "This is some heading"})
+
+#tag with class and id
+ExHiccup.render({:button,
+  %{id: "fetch_button", class: "btn btn-primary", "data-on-click": "@get('/fetch_endpoint')"},
+  "Fetch Data"})
+
+#tag with children
+ExHiccup.render({:ul, %{class: "list"}, [
+  {:li, "Item 1"},
+  {:li, "Item 2"},
+  {:li, "Item 3"}
+]})
 ```
 
 ## License
